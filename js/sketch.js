@@ -12,6 +12,7 @@ function setup() {
   colorMode(HSB);
 
   sizeSlider = document.getElementById("sizeCtrl");
+  colorSlider = document.getElementById("colorCtrl");
 
   for (var i = 0; i < 450; i++) {
     meteors.push(new Meteor());
@@ -33,14 +34,14 @@ function draw() {
 
 function Meteor() {
   jitterSlider = document.getElementById("jitterCtrl");
-  colorSlider = document.getElementById("colorCtrl");
 
   this.size = random(3);
-  this.color = color(colorSlider.value,255,255);
+  //this.color = color(random(255),255,255);
   this.speed = random(10);
 
   this.x = -random(width);
   this.y = -random(height);
+
 
   this.move = function(){
     this.x += random(jitterSlider.value); //this.size;
@@ -55,7 +56,7 @@ function Meteor() {
 
 
   this.display = function() {
-    fill(this.color,this.color,this.color);
+    fill(colorSlider.value, 255, 255);
     ellipse(this.x, this.y, sizeSlider.value, sizeSlider.value);
   }
 }
