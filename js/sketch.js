@@ -1,4 +1,8 @@
 var meteors = [];
+var colorSlider;
+var sizeSlider;
+var countSlider;
+var jitterSlider;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
@@ -7,7 +11,9 @@ function setup() {
 
   colorMode(HSB);
 
-  for (var i = 0; i < 300; i++) {
+  sizeSlider = document.getElementById("sizeCtrl");
+
+  for (var i = 0; i < 450; i++) {
     meteors.push(new Meteor());
   }
 }
@@ -15,36 +21,41 @@ function setup() {
 
 function draw() {
   background(color(0,0.1));
+  countSlider = document.getElementById("countCtrl");
 
-  for (var i = 0; i < meteors.length; i++) {
+  for (var i = 0; i < countSlider.value; i++) {
     meteors[i].move();
     meteors[i].display();
   }
+
 }
 
 
 function Meteor() {
-  this.size = random(10);
-  this.color = color(random(255),255,255);
+  jitterSlider = document.getElementById("jitterCtrl");
+  colorSlider = document.getElementById("colorCtrl");
+
+  this.size = random(3);
+  this.color = color(colorSlider.value,255,255);
   this.speed = random(10);
 
   this.x = -random(width);
   this.y = -random(height);
 
   this.move = function(){
-    this.x += this.size;
-    this.y += this.size;
+    this.x += random(jitterSlider.value); //this.size;
+    this.y += random(jitterSlider.value);
 
-    if(this.x > width || this.y > height) {
-      this.x = -random(width);
-      this.y = -random(height);
-
-    }
+  if(this.x > width || this.y > height) {
+    this.x = -random(width);
+    this.y = -random(height);
   }
 
-  this.display = function() {
-    fill(this.color);
-    ellipse(this.x, this.y, this.size, this.size);
+}
 
+
+  this.display = function() {
+    fill(this.color,this.color,this.color);
+    ellipse(this.x, this.y, sizeSlider.value, sizeSlider.value);
   }
 }

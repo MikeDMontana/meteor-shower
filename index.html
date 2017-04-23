@@ -5,8 +5,19 @@
     <title>Meteor Shower</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
     <script src="js/sketch.js"></script>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <div class="controls">
+      <label for="countCtrl">Meteor Count:</label>
+      <input type="range" id="countCtrl" value="275" max="450">
+      <label for="colorCtrl">Meteor Color:</label>
+      <input type="range" id="colorCtrl" value="10" max="255">
+      <label for="sizeCtrl">Meteor Size:</label>
+      <input id="sizeCtrl" type="range" min="0" max="25" value="3">
+      <label for="jitterCtrl">Meteor Jitter:</label>
+      <input id="jitterCtrl" type="range" min="0" max="25" value="3">
+    </div>
 
   </body>
 </html>
